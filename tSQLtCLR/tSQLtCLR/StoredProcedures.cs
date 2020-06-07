@@ -1,10 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Data.Sql;
-using System.Data.SqlTypes;
-using System.Data.SqlClient;
-
-using Microsoft.SqlServer.Server;
+﻿using System.Data.SqlTypes;
 
 namespace tSQLtCLR
 {
@@ -20,6 +14,12 @@ namespace tSQLtCLR
         {
             ResultSetFilter filter = new ResultSetFilter(new TestDatabaseFacade());
             filter.sendSelectedResultSetToSqlContext(resultSetNo, command);
+        }
+
+        public static void ResultSetToTable(string targetTable, SqlInt32 resultsetNo, SqlString command)
+        {
+            ResultSetToTable filter = new ResultSetToTable(new TestDatabaseFacade());
+            filter.sendSelectedResultSetToTable(targetTable, resultsetNo, command);
         }
 
         public static void NewConnection(SqlString command)

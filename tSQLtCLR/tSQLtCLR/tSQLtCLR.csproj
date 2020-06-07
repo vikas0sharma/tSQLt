@@ -76,10 +76,13 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>tSQLtOfficialSigningKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -97,6 +100,7 @@
     <Compile Include="CommandExecutor.cs" />
     <Compile Include="CommandExecutorException.cs" />
     <Compile Include="OutputCaptor.cs" />
+    <Compile Include="ResultSetToTable.cs" />
     <Compile Include="tSQLtPrivate.cs" />
     <Compile Include="InvalidResultSetException.cs" />
     <Compile Include="MetaDataEqualityAsserter.cs" />
@@ -145,6 +149,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF ($(ConfigurationName))==(Release) "$(SolutionDir)tSQLtCLR\PostBuild.bat" "$(SolutionDir)" "$(TargetPath)"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

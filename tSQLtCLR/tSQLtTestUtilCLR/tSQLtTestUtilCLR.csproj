@@ -59,6 +59,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>tSQLtOfficialSigningKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />

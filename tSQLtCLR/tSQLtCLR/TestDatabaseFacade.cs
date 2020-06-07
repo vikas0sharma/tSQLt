@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Data;
 
 namespace tSQLtCLR
 {
-    class TestDatabaseFacade : IDisposable
+    internal class TestDatabaseFacade : IDisposable
     {
         private SqlConnection connection;
         private SqlString infoMessage;
-        Boolean disposed = false;
+        private Boolean disposed = false;
 
         public TestDatabaseFacade()
         {
@@ -47,7 +45,8 @@ namespace tSQLtCLR
 
         public String ServerName
         {
-            get {
+            get
+            {
                 SqlDataReader reader = executeCommand("SELECT SERVERPROPERTY('ServerName');");
                 reader.Read();
                 String serverName = reader.GetString(0);
@@ -66,7 +65,7 @@ namespace tSQLtCLR
             infoMessage = SqlString.Null;
             connection.InfoMessage += OnInfoMessage;
             SqlCommand cmd = new SqlCommand();
-            
+
             cmd.Connection = connection;
             cmd.CommandText = Command.ToString();
 
@@ -114,6 +113,13 @@ namespace tSQLtCLR
             cmd.Parameters.AddWithValue("text", text);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
+        }
+
+        public SqlDataAdapter getSQLAdapterForCommand(SqlString Command)
+        {
+            infoMessage = SqlString.Null;
+            connection.InfoMessage += OnInfoMessage;
+            return new SqlDataAdapter(Command.ToString(), connection);
         }
     }
 }
